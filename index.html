@@ -9,8 +9,12 @@
   <h1>Quentin de Cézac</h1>
   <p>Je produis de la musique depuis 10 ans, et je me forme aujourd'hui au développement web. Je cherche une alternance.</p>
   <p>Site en construction 🎛️</p>
+
   <section>
     <h2>Ma musique</h2>
+
+    <!-- Ajout 1 : la zone où le visualiseur dessine -->
+    <canvas id="visualiseur" width="700" height="150"></canvas>
 
     <h3>J'aurais aimé</h3>
     <audio controls src="musique/aimer.mp3"></audio>
@@ -21,6 +25,8 @@
     <h3>Nosaj</h3>
     <audio controls src="musique/nosaj.mp3"></audio>
   </section>
-  
+
+  <!-- Ajout 2 : on relie le fichier JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
