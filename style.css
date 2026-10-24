@@ -36,3 +36,25 @@ canvas {
   border-radius: 8px;
   margin: 20px 0;
 }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  border: 1px solid #eb4f34;
+  color: #eb4f34;
+  border-radius: 20px;
+  padding: 2px 12px;
+  font-size: 0.9rem;
+}
+
+video {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 20px;
+}
