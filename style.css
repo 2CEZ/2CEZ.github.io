@@ -1,0 +1,19 @@
+body {
+  background-color: #111118;
+  color: #e8e8f0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  max-width: 700px;
+  margin: 80px auto;
+  padding: 0 20px;
+  line-height: 1.6;
+}
+
+h1 {
+  color: #7cf2c8;
+  font-size: 3rem;
+  letter-spacing: 2px;
+}
+
+p {
+  font-size: 1.1rem;
+}
