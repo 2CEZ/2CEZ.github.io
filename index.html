@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr" data-page="home">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>2CEZ · Quentin de Cézac</title>
+  <meta name="description" content="Portfolio de Quentin de Cézac (2CEZ) : beatmaker depuis 10 ans, développeur web en formation, créateur du jeu Zombie Outbreak.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700;800;900&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <header class="nav">
+      <a href="./">Quentin de Cézac</a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="./" aria-current="page">Accueil</a>
+        <a href="industrie.html">Industrie</a>
+        <a href="studio.html">Studio</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Le logo : un égaliseur dessiné par script.js dans les lettres.
+           Les lettres en dessous s'affichent si le script ne se lance pas. -->
+      <section class="hero">
+        <h1 class="logo logo--canvas logo--home" aria-label="2CEZ">
+          <canvas id="logo-eq" data-text="2CEZ" aria-hidden="true"></canvas>
+          <span class="logo-fallback" aria-hidden="true"><span class="l" style="--i:0">2</span><span class="l" style="--i:1">C</span><span class="l" style="--i:2">E</span><span class="l" style="--i:3">Z</span></span>
+          <span class="logo-sub">Musique · Développement</span>
+        </h1>
+
+        <figure class="quote">
+          <blockquote>
+            <p>Vous ne pouvez pas épuiser la créativité. Plus vous l'utilisez, plus vous en avez.</p>
+          </blockquote>
+          <figcaption>Maya Angelou</figcaption>
+        </figure>
+      </section>
+
+      <!-- Les deux univers : le jeu en premier -->
+      <section class="doors" aria-label="Mes projets">
+        <a class="door door--industrie" href="industrie.html">
+          <span class="door-label">2CEZ Industrie · Jeu vidéo</span>
+          <span class="door-title">ZOMBIE OUTBREAK</span>
+          <span class="status"><span class="status-dot"></span>En développement</span>
+          <span class="door-meta">Coop 4 joueurs · Monde ouvert · Unity</span>
+          <span class="door-cta">Voir le projet →</span>
+        </a>
+
+        <a class="door door--studio" href="studio.html">
+          <span class="door-label">2CEZ Studio · Musique</span>
+          <span class="door-title">2CEZ Studio</span>
+          <span class="door-meta">3 morceaux avec voix · 4 instrumentales</span>
+          <span class="door-cta">Écouter →</span>
+        </a>
+      </section>
+
+      <section class="facts" aria-label="En bref">
+        <div class="fact">
+          <span class="fact-k">Musique</span>
+          <span>FL Studio, VST, Analog Lab</span>
+        </div>
+        <div class="fact">
+          <span class="fact-k">Jeu vidéo</span>
+          <span>Unity, C#, développement assisté par IA</span>
+        </div>
+        <div class="fact">
+          <span class="fact-k">Web</span>
+          <span>HTML, CSS, JavaScript, en formation</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span>© 2026 2CEZ · Quentin de Cézac</span>
+      <a href="https://github.com/2cez" target="_blank" rel="noopener">GitHub</a>
+    </footer>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

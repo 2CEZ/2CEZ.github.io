@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr" data-page="studio">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>2CEZ Studio</title>
+  <meta name="description" content="2CEZ Studio : les morceaux avec voix et les instrumentales de Quentin de Cézac.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700;800;900&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <header class="nav">
+      <a href="./">Quentin de Cézac</a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="./">Accueil</a>
+        <a href="industrie.html">Industrie</a>
+        <a href="studio.html" aria-current="page">Studio</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Le logo en flammes est dessiné par script.js dans le canvas -->
+      <section class="hero">
+        <h1 class="logo logo--canvas logo--fire">
+          <canvas id="logo-feu" data-text="2CEZ" role="img" aria-label="2CEZ"></canvas>
+          <span class="logo-fallback" aria-hidden="true">2CEZ</span>
+          <span class="logo-sub">Studio</span>
+        </h1>
+        <p class="lede">Dix ans de production : des morceaux avec voix et des instrumentales. Choisis un titre pour l'écouter.</p>
+      </section>
+
+      <canvas id="visualiseur" class="viz" aria-hidden="true"></canvas>
+
+      <div class="crates">
+        <section class="crate" aria-labelledby="titre-voix">
+          <header class="crate-head">
+            <h2 id="titre-voix">Voix</h2>
+            <span class="crate-count">3 titres</span>
+          </header>
+          <ol class="tracklist">
+          <li class="track" data-src="musique/nosaj.mp3" data-title="Nosaj" data-kind="voix">
+            <canvas class="cover" width="192" height="192" aria-hidden="true"></canvas>
+            <div class="t-info">
+              <span class="t-title">Nosaj</span>
+              <span class="t-meta">01 · <span class="t-duree">--:--</span></span>
+              <input class="t-progress" id="p-voix-1" type="range" min="0" max="100" step="0.1" value="0" aria-label="Position dans Nosaj" disabled>
+            </div>
+            <button class="t-play" type="button" aria-label="Lire Nosaj"><svg class="i-play" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg><svg class="i-pause" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z" fill="currentColor"/></svg></button>
+          </li>
+          <li class="track" data-src="musique/aimer.mp3" data-title="J'aurais aimé" data-kind="voix">
+            <canvas class="cover" width="192" height="192" aria-hidden="true"></canvas>
+            <div class="t-info">
+              <span class="t-title">J'aurais aimé</span>
+              <span class="t-meta">02 · <span class="t-duree">--:--</span></span>
+              <input class="t-progress" id="p-voix-2" type="range" min="0" max="100" step="0.1" value="0" aria-label="Position dans J'aurais aimé" disabled>
+            </div>
+            <button class="t-play" type="button" aria-label="Lire J'aurais aimé"><svg class="i-play" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg><svg class="i-pause" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z" fill="currentColor"/></svg></button>
+          </li>
+          <li class="track" data-src="musique/impression.mp3" data-title="Impression" data-kind="voix">
+            <canvas class="cover" width="192" height="192" aria-hidden="true"></canvas>
+            <div class="t-info">
+              <span class="t-title">Impression</span>
+              <span class="t-meta">03 · <span class="t-duree">--:--</span></span>
+              <input class="t-progress" id="p-voix-3" type="range" min="0" max="100" step="0.1" value="0" aria-label="Position dans Impression" disabled>
+            </div>
+            <button class="t-play" type="button" aria-label="Lire Impression"><svg class="i-play" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg><svg class="i-pause" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z" fill="currentColor"/></svg></button>
+          </li>
+          </ol>
+        </section>
+
+        <!-- Instrumentales : remplace les titres et les noms de fichiers quand tu les ajoutes -->
+        <section class="crate" aria-labelledby="titre-instru">
+          <header class="crate-head">
+            <h2 id="titre-instru">Instrumentales</h2>
+            <span class="crate-count">4 titres</span>
+          </header>
+          <ol class="tracklist">
+          <li class="track" data-src="musique/instru-1.mp3" data-title="Instrumentale 01" data-kind="instru">
+            <canvas class="cover" width="192" height="192" aria-hidden="true"></canvas>
+            <div class="t-info">
+              <span class="t-title">Instrumentale 01</span>
+              <span class="t-meta">01 · <span class="t-duree">--:--</span></span>
+              <input class="t-progress" id="p-instru-1" type="range" min="0" max="100" step="0.1" value="0" aria-label="Position dans Instrumentale 01" disabled>
+            </div>
+            <button class="t-play" type="button" aria-label="Lire Instrumentale 01"><svg class="i-play" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg><svg class="i-pause" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z" fill="currentColor"/></svg></button>
+          </li>
+          <li class="track" data-src="musique/instru-2.mp3" data-title="Instrumentale 02" data-kind="instru">
+            <canvas class="cover" width="192" height="192" aria-hidden="true"></canvas>
+            <div class="t-info">
+              <span class="t-title">Instrumentale 02</span>
+              <span class="t-meta">02 · <span class="t-duree">--:--</span></span>
+              <input class="t-progress" id="p-instru-2" type="range" min="0" max="100" step="0.1" value="0" aria-label="Position dans Instrumentale 02" disabled>
+            </div>
+            <button class="t-play" type="button" aria-label="Lire Instrumentale 02"><svg class="i-play" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg><svg class="i-pause" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z" fill="currentColor"/></svg></button>
+          </li>
+          <li class="track" data-src="musique/instru-3.mp3" data-title="Instrumentale 03" data-kind="instru">
+            <canvas class="cover" width="192" height="192" aria-hidden="true"></canvas>
+            <div class="t-info">
+              <span class="t-title">Instrumentale 03</span>
+              <span class="t-meta">03 · <span class="t-duree">--:--</span></span>
+              <input class="t-progress" id="p-instru-3" type="range" min="0" max="100" step="0.1" value="0" aria-label="Position dans Instrumentale 03" disabled>
+            </div>
+            <button class="t-play" type="button" aria-label="Lire Instrumentale 03"><svg class="i-play" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg><svg class="i-pause" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z" fill="currentColor"/></svg></button>
+          </li>
+          <li class="track" data-src="musique/instru-4.mp3" data-title="Instrumentale 04" data-kind="instru">
+            <canvas class="cover" width="192" height="192" aria-hidden="true"></canvas>
+            <div class="t-info">
+              <span class="t-title">Instrumentale 04</span>
+              <span class="t-meta">04 · <span class="t-duree">--:--</span></span>
+              <input class="t-progress" id="p-instru-4" type="range" min="0" max="100" step="0.1" value="0" aria-label="Position dans Instrumentale 04" disabled>
+            </div>
+            <button class="t-play" type="button" aria-label="Lire Instrumentale 04"><svg class="i-play" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg><svg class="i-pause" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z" fill="currentColor"/></svg></button>
+          </li>
+          </ol>
+        </section>
+      </div>
+
+      <section class="cloud">
+        <p>Plus de morceaux sur SoundCloud.</p>
+        <!-- Quand tu as le lien : remplace # par l'adresse de ta page, retire aria-disabled="true" et change le texte -->
+        <a class="btn" href="#" aria-disabled="true">Lien SoundCloud bientôt disponible</a>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p class="rights">© 2026 2CEZ. Tous droits réservés. Les morceaux de cette page ne peuvent être reproduits, diffusés ou utilisés sans autorisation écrite.</p>
+      <a href="https://github.com/2cez" target="_blank" rel="noopener">GitHub</a>
+    </footer>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

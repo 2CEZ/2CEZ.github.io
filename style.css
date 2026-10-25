@@ -1,0 +1,1128 @@
+/* =========================================================
+   2CEZ — style commun aux trois pages
+   Mise en page : une colonne centrée. Le logo 2CEZ ouvre
+   chaque page, puis vient le contenu propre à la page.
+   Chaque page change de couleurs grâce à html[data-page].
+   ========================================================= */
+
+/* Transition douce du logo d'une page à l'autre (Chrome, Edge) */
+@view-transition {
+  navigation: auto;
+}
+
+/* ---------- 1. Les couleurs et les polices (tokens) ---------- */
+
+/* Accueil : encre violette + le rouge-orangé de 2CEZ */
+:root {
+  color-scheme: dark;
+  --bg: #0e0d12;
+  --bg-2: #17151d;
+  --fg: #ece8f1;
+  --muted: #8f8a9c;
+  --line: #2a2733;
+  --accent: #eb4f34;
+  --accent-2: #f2b33d;
+
+  /* Couleurs des deux univers, utilisées sur l'accueil */
+  --c-studio: #ff6a2b;
+  --c-industrie: #f2d02b;
+
+  --f-display: "Unbounded", "Arial Black", system-ui, sans-serif;
+  --f-body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --f-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+
+  --radius: 14px;
+}
+
+/* Studio : braise et ambre */
+html[data-page="studio"] {
+  --bg: #130d0a;
+  --bg-2: #1e1511;
+  --fg: #f4ebe3;
+  --muted: #a8968a;
+  --line: #372820;
+  --accent: #ff6a2b;
+  --accent-2: #ffc451;
+}
+
+/* Industrie : zone de quarantaine (noir verdâtre, jaune danger) */
+html[data-page="industrie"] {
+  --bg: #0a0e0c;
+  --bg-2: #111814;
+  --fg: #e2e9de;
+  --muted: #80907f;
+  --line: #202c25;
+  --accent: #f2d02b;
+  --accent-2: #79d06a;
+}
+
+/* ---------- 2. Bases ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg);
+  background-image: radial-gradient(70% 45% at 85% -10%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
+  background-repeat: no-repeat;
+  color: var(--fg);
+  font-family: var(--f-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin-inline: auto;
+}
+
+/* ---------- 3. Navigation ---------- */
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 24px;
+  padding-block: 22px;
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav a:hover,
+.nav a[aria-current="page"] {
+  color: var(--fg);
+}
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+}
+
+.nav-links a[aria-current="page"] {
+  box-shadow: 0 2px 0 var(--accent);
+}
+
+/* ---------- 4. Le logo 2CEZ ---------- */
+
+.hero {
+  padding-block: clamp(32px, 7vw, 88px) 40px;
+}
+
+.logo {
+  view-transition-name: brand;
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: clamp(4.2rem, 21vw, 11.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.logo-sub {
+  display: block;
+  margin-top: 0.9rem;
+  font-family: var(--f-mono);
+  font-weight: 500;
+  font-size: clamp(0.8rem, 1.6vw, 1rem);
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Accueil : les lettres montent puis un reflet les traverse */
+.logo--home .l {
+  display: inline-block;
+  background-image: linear-gradient(100deg, var(--fg) 0 40%, var(--accent-2) 48%, var(--accent) 53%, var(--fg) 61% 100%);
+  background-size: 320% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation:
+    rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both,
+    sheen 2.2s ease-in-out both;
+  animation-delay: calc(var(--i) * 90ms), calc(0.9s + var(--i) * 90ms);
+}
+
+.logo--home:hover .l {
+  animation: sheen-again 1.4s ease-in-out both;
+  animation-delay: calc(var(--i) * 70ms);
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(0.3em);
+    opacity: 0.15;
+  }
+}
+
+@keyframes sheen {
+  from { background-position: 100% 0; }
+  to { background-position: 0% 0; }
+}
+
+@keyframes sheen-again {
+  from { background-position: 100% 0; }
+  to { background-position: 0% 0; }
+}
+
+/* Petites barres de signal sous le logo */
+.signal {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 28px;
+  margin-top: 28px;
+}
+
+.signal i {
+  width: 4px;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent);
+  transform-origin: bottom;
+  transform: scaleY(0.3);
+  animation: pulse 1.4s ease-in-out infinite;
+  animation-delay: var(--d);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scaleY(0.2); }
+  50% { transform: scaleY(1); }
+}
+
+/* Accueil et Studio : le logo est dessiné dans un canvas.
+   Les lettres « de secours » s'affichent tant que le canvas n'est pas prêt. */
+.logo--canvas canvas {
+  display: none;
+  max-width: 100%;
+}
+
+.logo--canvas.is-live canvas {
+  display: block;
+}
+
+.logo--canvas.is-live .logo-fallback {
+  display: none;
+}
+
+.logo--home canvas {
+  cursor: crosshair;
+}
+
+.logo--fire .logo-fallback {
+  display: block;
+  background-image: linear-gradient(to top, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Industrie : lettres à lignes de balayage, qui « buggent » */
+.logo--glitch .logo-word {
+  position: relative;
+  display: inline-block;
+  background-image: repeating-linear-gradient(to bottom, var(--fg) 0 4px, transparent 4px 6px);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.logo--glitch .logo-word::before,
+.logo--glitch .logo-word::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  clip-path: inset(100% 0 0 0);
+}
+
+.logo--glitch .logo-word::before {
+  color: var(--accent);
+  animation: glitch-a 3.4s infinite steps(1);
+}
+
+.logo--glitch .logo-word::after {
+  color: var(--accent-2);
+  animation: glitch-b 2.9s infinite steps(1);
+}
+
+/* Industrie : une ligne de scanner balaie le logo, qui tremble parfois */
+.glitch-box {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  animation: jitter 4.2s infinite steps(1);
+}
+
+.scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -25%;
+  height: 22%;
+  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--accent-2) 45%, transparent), transparent);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: scan 3.2s linear infinite;
+}
+
+@keyframes scan {
+  to { top: 105%; }
+}
+
+@keyframes jitter {
+  0%, 92%, 100% { filter: none; transform: none; }
+  93% { filter: drop-shadow(-4px 0 var(--accent)) drop-shadow(4px 0 var(--accent-2)); transform: translateX(3px) skewX(-4deg); }
+  95% { filter: drop-shadow(3px 0 var(--accent)) drop-shadow(-3px 0 var(--accent-2)); transform: translateX(-2px); }
+}
+
+@keyframes glitch-a {
+  0%, 84%, 100% { clip-path: inset(100% 0 0 0); transform: none; }
+  86% { clip-path: inset(12% 0 64% 0); transform: translateX(-0.05em); }
+  89% { clip-path: inset(58% 0 18% 0); transform: translateX(0.04em); }
+  92% { clip-path: inset(34% 0 44% 0); transform: translateX(-0.02em); }
+}
+
+@keyframes glitch-b {
+  0%, 78%, 100% { clip-path: inset(100% 0 0 0); transform: none; }
+  80% { clip-path: inset(70% 0 6% 0); transform: translateX(0.05em); }
+  83% { clip-path: inset(4% 0 80% 0); transform: translateX(-0.03em); }
+}
+
+/* ---------- 5. Textes communs ---------- */
+
+.lede {
+  max-width: 52ch;
+  margin: 28px 0 0;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* Citation de l'accueil */
+.quote {
+  position: relative;
+  max-width: 42ch;
+  margin: 44px 0 0;
+  padding-left: clamp(20px, 3vw, 32px);
+  border-left: 2px solid var(--accent);
+}
+
+.quote blockquote {
+  margin: 0;
+}
+
+.quote p {
+  margin: 0;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.quote p::before {
+  content: "« ";
+  color: var(--accent);
+}
+
+.quote p::after {
+  content: " »";
+  color: var(--accent);
+}
+
+.quote figcaption {
+  margin-top: 14px;
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.quote figcaption::before {
+  content: "— ";
+  color: var(--accent-2);
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 4px 12px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-industrie);
+}
+
+html[data-page="industrie"] .status {
+  color: var(--accent);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: blink 1.6s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 3px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  color: var(--fg);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent);
+  font: 500 0.9rem var(--f-body);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn[aria-disabled="true"]:hover {
+  background: transparent;
+  color: var(--accent);
+}
+
+/* ---------- 6. Accueil : les deux portes ---------- */
+
+.doors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.door {
+  --door: var(--accent);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 270px;
+  padding: 30px 28px 26px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+  color: var(--fg);
+  text-decoration: none;
+  transition: border-color 0.25s, transform 0.25s;
+}
+
+.door:hover,
+.door:focus-visible {
+  border-color: var(--door);
+  transform: translateY(-3px);
+}
+
+.door--industrie {
+  --door: var(--c-industrie);
+}
+
+.door--studio {
+  --door: var(--c-studio);
+  background-image: radial-gradient(90% 80% at 100% 100%, color-mix(in srgb, var(--c-studio) 18%, transparent), transparent 70%);
+}
+
+/* Bande « danger » en haut de la porte du jeu */
+.door--industrie::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 6px;
+  background: repeating-linear-gradient(-45deg, var(--c-industrie) 0 12px, transparent 12px 24px);
+}
+
+.door-label {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--door);
+}
+
+.door-title {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: clamp(1.7rem, 4.2vw, 2.5rem);
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.door-meta {
+  color: var(--muted);
+}
+
+.door-cta {
+  margin-top: auto;
+  font-weight: 600;
+  color: var(--door);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 24px;
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fact-k {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- 7. Studio ---------- */
+
+.viz {
+  display: block;
+  width: 100%;
+  height: 110px;
+  margin-block: 8px 44px;
+  border-bottom: 1px solid var(--line);
+}
+
+.crates {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 40px;
+}
+
+.crate {
+  min-width: 0;
+}
+
+.crate-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.crate-head h2 {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.crate-count {
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.tracklist {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.track {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 10px;
+  border-radius: 12px;
+  transition: background 0.2s;
+}
+
+.track:hover,
+.track.is-current {
+  background: var(--bg-2);
+}
+
+.cover {
+  display: block;
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+}
+
+.t-info {
+  min-width: 0;
+}
+
+.t-title {
+  display: block;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.t-meta {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.t-progress {
+  display: block;
+  width: 100%;
+  margin: 8px 0 0;
+  accent-color: var(--accent);
+}
+
+.t-progress:disabled {
+  opacity: 0.35;
+}
+
+.t-play {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.t-play:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.t-play .i-pause,
+.track.is-playing .t-play .i-play {
+  display: none;
+}
+
+.track.is-playing .t-play .i-pause {
+  display: block;
+}
+
+.track.is-playing .t-play {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.track.is-missing .t-play {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.track.is-missing .t-progress {
+  visibility: hidden;
+}
+
+.track.is-missing .t-duree {
+  color: var(--accent-2);
+}
+
+.cloud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 56px;
+  padding: 22px 24px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+}
+
+.cloud p {
+  margin: 0;
+}
+
+.rights {
+  max-width: 70ch;
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* ---------- 8. Industrie ---------- */
+
+.game {
+  position: relative;
+  padding-top: 36px;
+}
+
+/* Ruban de quarantaine */
+.game::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 6px;
+  border-radius: 3px;
+  background: repeating-linear-gradient(-45deg, var(--accent) 0 14px, var(--bg) 14px 28px);
+}
+
+.game-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+
+.game-title {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 7vw, 4.4rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* Chiffres clés du jeu */
+.figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  gap: 1px;
+  margin: 32px 0 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--line);
+}
+
+.figures div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 4px;
+  padding: 16px 18px;
+  background: var(--bg);
+}
+
+.figures dt {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.figures dd {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Fonctionnalités implémentées */
+.features {
+  margin-top: 64px;
+}
+
+.section-title {
+  margin: 0 0 20px;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 16px;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+  transition: border-color 0.2s;
+}
+
+.feature:hover {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+}
+
+.feature-k {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+
+.feature h3 {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+.hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.feature code {
+  margin-top: auto;
+  padding-top: 10px;
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  color: var(--fg);
+  overflow-wrap: anywhere;
+}
+
+.project {
+  margin-top: 56px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+}
+
+.project-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+}
+
+.project-bar h2 {
+  margin: 0;
+  font-family: var(--f-mono);
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.path {
+  color: var(--muted);
+}
+
+.count {
+  margin-left: auto;
+  color: var(--muted);
+}
+
+.assets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));
+  gap: 12px;
+  padding: 16px;
+}
+
+.asset {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.asset:hover,
+.asset:focus-visible {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.asset-thumb {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+}
+
+.asset-thumb img,
+.asset-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.asset-empty {
+  display: none;
+  position: absolute;
+  inset: 0;
+  place-items: center;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, color-mix(in srgb, var(--accent) 7%, transparent) 10px 20px);
+}
+
+.asset.is-missing .asset-empty {
+  display: grid;
+}
+
+.asset.is-missing img,
+.asset.is-missing video {
+  visibility: hidden;
+}
+
+.asset-kind {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--bg);
+  font-family: var(--f-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.asset-name {
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* Visionneuse plein écran */
+.viewer {
+  width: min(1000px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  padding: 0;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.viewer::backdrop {
+  background: rgba(4, 6, 5, 0.85);
+}
+
+.viewer-top,
+.viewer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+}
+
+.viewer-caption {
+  flex: 1;
+  margin: 0;
+  text-align: center;
+  color: var(--muted);
+}
+
+.viewer-stage {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  background: var(--bg-2);
+}
+
+.viewer-stage img,
+.viewer-stage video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.viewer-empty {
+  padding: 24px;
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.btn-ghost {
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- 9. Pied de page ---------- */
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px 24px;
+  margin-top: 88px;
+  padding-block: 24px 40px;
+  border-top: 1px solid var(--line);
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.foot a {
+  color: var(--fg);
+}
+
+/* ---------- 10. Moins d'animations si l'utilisateur le demande ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  @view-transition {
+    navigation: none;
+  }
+}

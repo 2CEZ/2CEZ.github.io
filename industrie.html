@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr" data-page="industrie">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>2CEZ Industrie</title>
+  <meta name="description" content="2CEZ Industrie : Zombie Outbreak, jeu vidéo en développement sous Unity.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700;800;900&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <header class="nav">
+      <a href="./">Quentin de Cézac</a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="./">Accueil</a>
+        <a href="industrie.html" aria-current="page">Industrie</a>
+        <a href="studio.html">Studio</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1 class="logo logo--glitch">
+          <span class="glitch-box">
+            <span class="logo-word" data-text="2CEZ">2CEZ</span>
+            <span class="scan" aria-hidden="true"></span>
+          </span>
+          <span class="logo-sub">Industrie</span>
+        </h1>
+      </section>
+
+      <section class="game">
+        <p class="eyebrow">Projet en cours</p>
+        <div class="game-head">
+          <h2 class="game-title">ZOMBIE OUTBREAK</h2>
+          <span class="status"><span class="status-dot"></span>En développement</span>
+        </div>
+
+        <p class="lede">Démo technique d'un jeu de survie en monde ouvert, jouable en coopération jusqu'à 4 joueurs, face à des hordes de zombies et aux caprices de la météo.</p>
+
+        <ul class="tags">
+          <li>Unity</li>
+          <li>URP</li>
+          <li>C#</li>
+          <li>Netcode for GameObjects</li>
+          <li>NavMesh</li>
+          <li>Claude Code</li>
+        </ul>
+
+        <dl class="figures">
+          <div><dt>Joueurs en coop</dt><dd>4</dd></div>
+          <div><dt>États de l'IA zombie</dt><dd>4</dd></div>
+          <div><dt>Types de météo</dt><dd>6</dd></div>
+          <div><dt>Synchro des zombies</dt><dd>0,1 s</dd></div>
+        </dl>
+      </section>
+
+      <!-- Inspiré de la fenêtre « Project » de Unity -->
+      <section class="project" aria-labelledby="titre-medias">
+        <header class="project-bar">
+          <h2 id="titre-medias">Médias du projet</h2>
+          <span class="path">Assets › Media</span>
+          <span class="count">5 éléments</span>
+        </header>
+
+        <div class="assets">
+          <button class="asset" type="button" data-type="image" data-src="images/jeu-1.jpg" data-caption="Capture d'écran 1">
+            <span class="asset-thumb">
+              <img src="images/jeu-1.jpg" alt="Capture d'écran 1 de Zombie Outbreak" loading="lazy">
+              <span class="asset-empty">À venir</span>
+              <span class="asset-kind">Image</span>
+            </span>
+            <span class="asset-name">jeu-1.jpg</span>
+          </button>
+
+          <button class="asset" type="button" data-type="image" data-src="images/jeu-2.jpg" data-caption="Capture d'écran 2">
+            <span class="asset-thumb">
+              <img src="images/jeu-2.jpg" alt="Capture d'écran 2 de Zombie Outbreak" loading="lazy">
+              <span class="asset-empty">À venir</span>
+              <span class="asset-kind">Image</span>
+            </span>
+            <span class="asset-name">jeu-2.jpg</span>
+          </button>
+
+          <button class="asset" type="button" data-type="video" data-src="videos/extrait-1.mp4" data-caption="Extrait vidéo 1">
+            <span class="asset-thumb">
+              <video src="videos/extrait-1.mp4#t=0.5" muted playsinline preload="metadata"></video>
+              <span class="asset-empty">À venir</span>
+              <span class="asset-kind">Vidéo</span>
+            </span>
+            <span class="asset-name">extrait-1.mp4</span>
+          </button>
+
+          <button class="asset" type="button" data-type="video" data-src="videos/extrait-2.mp4" data-caption="Extrait vidéo 2">
+            <span class="asset-thumb">
+              <video src="videos/extrait-2.mp4#t=0.5" muted playsinline preload="metadata"></video>
+              <span class="asset-empty">À venir</span>
+              <span class="asset-kind">Vidéo</span>
+            </span>
+            <span class="asset-name">extrait-2.mp4</span>
+          </button>
+
+          <button class="asset" type="button" data-type="video" data-src="videos/extrait-3.mp4" data-caption="Extrait vidéo 3">
+            <span class="asset-thumb">
+              <video src="videos/extrait-3.mp4#t=0.5" muted playsinline preload="metadata"></video>
+              <span class="asset-empty">À venir</span>
+              <span class="asset-kind">Vidéo</span>
+            </span>
+            <span class="asset-name">extrait-3.mp4</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="features" aria-labelledby="titre-implemente">
+        <h2 id="titre-implemente" class="section-title">Ce qui est implémenté</h2>
+        <div class="feature-grid">
+          <article class="feature">
+            <span class="feature-k">Réseau</span>
+            <h3>Coop 4 joueurs hôte / clients</h3>
+            <ul class="hashtags"><li>#NetcodeForGameObjects</li><li>#UnityTransport</li><li>#RPC</li><li>#NetworkVariables</li></ul>
+          </article>
+          <article class="feature">
+            <span class="feature-k">Réseau</span>
+            <h3>Zombies calculés par l'hôte</h3>
+            <ul class="hashtags"><li>#AutoritéHôte</li><li>#Synchro10Hz</li><li>#MiseEnVeille</li></ul>
+          </article>
+          <article class="feature">
+            <span class="feature-k">IA</span>
+            <h3>Zombies qui entendent</h3>
+            <ul class="hashtags"><li>#NavMesh</li><li>#MachineÀÉtats</li><li>#SystèmeDeBruit</li><li>#ZonesInsonorisées</li></ul>
+          </article>
+          <article class="feature">
+            <span class="feature-k">IA</span>
+            <h3>Meutes et hordes errantes</h3>
+            <ul class="hashtags"><li>#Horde</li><li>#AttaqueEnÉventail</li><li>#CriD'Alerte</li></ul>
+          </article>
+          <article class="feature">
+            <span class="feature-k">Combat</span>
+            <h3>Découpe du maillage</h3>
+            <ul class="hashtags"><li>#MeshSlicing</li><li>#Démembrement</li><li>#RagdollProcédural</li></ul>
+          </article>
+          <article class="feature">
+            <span class="feature-k">Combat</span>
+            <h3>Armes à feu et armes blanches</h3>
+            <ul class="hashtags"><li>#Raycast</li><li>#Headshot</li><li>#AimIK</li><li>#Combo</li><li>#Parade</li></ul>
+          </article>
+          <article class="feature">
+            <span class="feature-k">Monde</span>
+            <h3>Météo et cycle jour / nuit</h3>
+            <ul class="hashtags"><li>#CielProcédural</li><li>#Orages</li><li>#SurfacesMouillées</li><li>#Foudre</li></ul>
+          </article>
+          <article class="feature">
+            <span class="feature-k">Survie</span>
+            <h3>Survie et inventaire</h3>
+            <ul class="hashtags"><li>#Faim</li><li>#Soif</li><li>#Infection</li><li>#Morsure</li><li>#InventaireEnGrille</li></ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- Visionneuse qui s'ouvre au clic sur un média -->
+    <dialog id="visionneuse" class="viewer" aria-label="Visionneuse des médias">
+      <div class="viewer-top">
+        <span class="viewer-count"></span>
+        <button class="btn-ghost viewer-close" type="button">Fermer</button>
+      </div>
+      <div class="viewer-stage"></div>
+      <div class="viewer-bottom">
+        <button class="btn-ghost viewer-prev" type="button">← Précédent</button>
+        <p class="viewer-caption"></p>
+        <button class="btn-ghost viewer-next" type="button">Suivant →</button>
+      </div>
+    </dialog>
+
+    <footer class="foot">
+      <span>© 2026 2CEZ · Quentin de Cézac</span>
+      <a href="https://github.com/2cez" target="_blank" rel="noopener">GitHub</a>
+    </footer>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
