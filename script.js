@@ -689,7 +689,9 @@
         stage.appendChild(img);
       }
 
-      caption.textContent = asset.dataset.caption;
+      caption.textContent = asset.dataset.desc
+        ? asset.dataset.caption + " — " + asset.dataset.desc
+        : asset.dataset.caption;
       counter.textContent = index + 1 + " / " + assets.length;
     }
 

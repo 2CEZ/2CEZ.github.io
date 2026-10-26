@@ -1020,6 +1020,13 @@ html[data-page="industrie"] .status {
   overflow-wrap: anywhere;
 }
 
+.asset-desc {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--fg);
+  text-align: center;
+}
+
 /* Visionneuse plein écran */
 .viewer {
   width: min(1000px, calc(100vw - 32px));
